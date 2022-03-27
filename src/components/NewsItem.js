@@ -3,7 +3,7 @@ import React, { Component } from "react";
 export class NewsItem extends Component {
   render() {
     // array destructing
-    let { title, description, imgUrl, url } = this.props;
+    let { title, description, imgUrl, url, source, publishedAt } = this.props;
     return (
       <div className="card">
         <img
@@ -17,7 +17,11 @@ export class NewsItem extends Component {
         />
         <div className="card-body">
           <h5 className="card-title">{title}</h5>
+          <span className="badge bg-info text-dark">{source}</span>
           <p className="card-text">{description}</p>
+          <p className="card-text">
+            <small className="text-muted">{`At ${publishedAt}`}</small>
+          </p>
           <a
             rel="noreferrer"
             href={url}

@@ -5,11 +5,11 @@ import Spinner from "./Spinner";
 
 export default class News extends Component {
   // default props
-  static defaultProps = {
-    pageSize: 18,
-    country: "in",
-    category: "general",
-  };
+  // static defaultProps = {
+  //   pageSize: 18,
+  //   country: "in",
+  //   category: "general",
+  // };
 
   static propTypes = {
     pageSize: PropTypes.number,
@@ -17,9 +17,16 @@ export default class News extends Component {
     category: PropTypes.string,
   };
 
-  constructor() {
-    super();
+  capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
+  constructor(props) {
+    super(props);
     this.state = { articles: [], loading: false, page: 1 };
+    document.title = `${this.capitalizeFirstLetter(
+      this.props.category
+    )} | News turtle`;
   }
 
   async updateNews() {
@@ -36,6 +43,7 @@ export default class News extends Component {
   }
 
   async componentDidMount() {
+    // this will run after render(check life cycle diagram for more)
     this.updateNews();
   }
 
@@ -60,47 +68,53 @@ export default class News extends Component {
   render() {
     return (
       <>
-        <h1 className="text-center" style={{ margin: "1.5rem 0" }}>
-          News turtle - Top headlines for you!
-        </h1>
-        {this.state.loading && <Spinner />}
-        <div className="row">
-          {!this.state.loading &&
-            this.state.articles.map((element) => {
-              return (
-                <div className="col-md-4 my-2" key={element.url}>
-                  <NewsItem
-                    title={element.title}
-                    description={element.description}
-                    imgUrl={element.urlToImage}
-                    url={element.url}
-                  />
-                </div>
-              );
-            })}
-        </div>
-        <div className="container d-flex justify-content-between">
-          <button
-            disabled={this.state.page <= 1}
-            type="button"
-            className="btn btn-dark"
-            onClick={this.handlePrev}
-          >
-            Previous
-          </button>
-          <button
-            disabled={
-              parseInt(
-                this.state.totalResults /
-                  (this.props.pageSize * this.state.page)
-              ) === 0
-            }
-            type="button"
-            className="btn btn-dark"
-            onClick={this.handleNext}
-          >
-            Next
-          </button>
+        <div className="container">
+          <h1 className="text-center" style={{ margin: "1.5rem 0" }}>
+            {`News turtle - Top ${this.capitalizeFirstLetter(
+              this.props.category
+            )} headlines !`}
+          </h1>
+          {this.state.loading && <Spinner />}
+          <div className="row">
+            {!this.state.loading &&
+              this.state.articles.map((element) => {
+                return (
+                  <div className="col-md-4 my-2" key={element.url}>
+                    <NewsItem
+                      title={element.title}
+                      description={element.description}
+                      imgUrl={element.urlToImage}
+                      url={element.url}
+                      source={element.source.name}
+                      publishedAt={new Date(element.publishedAt).toGMTString()}
+                    />
+                  </div>
+                );
+              })}
+          </div>
+          <div className="container d-flex justify-content-between">
+            <button
+              disabled={this.state.page <= 1}
+              type="button"
+              className="btn btn-dark"
+              onClick={this.handlePrev}
+            >
+              Previous
+            </button>
+            <button
+              disabled={
+                parseInt(
+                  this.state.totalResults /
+                    (this.props.pageSize * this.state.page)
+                ) === 0
+              }
+              type="button"
+              className="btn btn-dark"
+              onClick={this.handleNext}
+            >
+              Next
+            </button>
+          </div>
         </div>
       </>
     );
