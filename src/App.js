@@ -6,11 +6,18 @@ import News from "./components/News";
 
 export default class App extends Component {
   render() {
+    const pageSize = 18;
+    const country = "in";
+    const category = "general";
     return (
       <>
         <Navbar />
         <div className="container">
-          <News />
+          <News
+            pageSize={this.pageSize}
+            country={this.country}
+            category={this.category}
+          />
         </div>
       </>
     );

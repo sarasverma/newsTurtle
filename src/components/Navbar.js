@@ -11,8 +11,8 @@ export class Navbar extends Component {
           className="navbar-toggler"
           type="button"
           data-toggle="collapse"
-          data-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
+          data-target="#navbarNav"
+          aria-controls="navbarNav"
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
@@ -29,6 +29,36 @@ export class Navbar extends Component {
             <li className="nav-item">
               <a className="nav-link" href="/about">
                 About us
+              </a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="/business">
+                business
+              </a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="/entertainment">
+                entertainment
+              </a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="/health">
+                health
+              </a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="/science">
+                science
+              </a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="/sports">
+                sports
+              </a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="/technology">
+                technology
               </a>
             </li>
           </ul>
