@@ -70,7 +70,10 @@ export default class News extends Component {
     return (
       <>
         <div className="container">
-          <h1 className="text-center" style={{ margin: "1.5rem 0" }}>
+          <h1
+            className="text-center"
+            style={{ margin: "1.5rem 0", marginTop: "5rem" }}
+          >
             {`News turtle - Top ${this.capitalizeFirstLetter(
               this.props.category
             )} headlines !`}

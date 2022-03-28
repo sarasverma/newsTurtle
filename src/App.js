@@ -41,7 +41,7 @@ export default class App extends Component {
               exact
               path="/about"
               element={
-                <h2 className="text-center">
+                <h2 className="text-center" style={{ marginTop: "5rem" }}>
                   This site is made by Saras Verma for learning purpose only.
                   <p>Have fun !!!😊</p>
                 </h2>
